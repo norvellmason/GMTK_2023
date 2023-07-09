@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class MinigameEnablerScript : MonoBehaviour
 {
     public bool MinigameEnabled { get; private set; } = false;
     private bool _IsFadingIn = false;
-    private bool _IsFadingOut = false;
+    public bool IsFadingOut { get; private set; } = false;
     private float _ValueToSetAlpha = 0f;
 
     // Start is called before the first frame update
@@ -20,22 +21,23 @@ public class MinigameEnablerScript : MonoBehaviour
     {
         if (_IsFadingIn)
         {
-            _ValueToSetAlpha += Time.deltaTime;
+            _ValueToSetAlpha += Time.deltaTime * 0.5f;
             _ValueToSetAlpha = Mathf.Min(_ValueToSetAlpha, 1);
             SetAlpha(_ValueToSetAlpha);
             if (_ValueToSetAlpha == 1)
             {
                 _IsFadingIn = false;
+                MinigameEnabled = true;
             }
         }
-        else if (_IsFadingOut)
+        else if (IsFadingOut)
         {
-            _ValueToSetAlpha -= Time.deltaTime;
+            _ValueToSetAlpha -= Time.deltaTime * 0.5f;
             _ValueToSetAlpha = Mathf.Max(_ValueToSetAlpha, 0);
             SetAlpha(_ValueToSetAlpha);
             if (_ValueToSetAlpha == 0)
             {
-                _IsFadingOut = false;
+                IsFadingOut = false;
                 gameObject.SetActive(false);
             }
         }
@@ -43,9 +45,8 @@ public class MinigameEnablerScript : MonoBehaviour
 
     public void EnableMinigame()
     {
-        MinigameEnabled = true;
         _IsFadingIn = true;
-        _IsFadingOut = false;
+        IsFadingOut = false;
         _ValueToSetAlpha = 0;
         gameObject.SetActive(true);
     }
@@ -53,7 +54,7 @@ public class MinigameEnablerScript : MonoBehaviour
     public void DisableMinigame()
     {
         MinigameEnabled = false;
-        _IsFadingOut = true;
+        IsFadingOut = true;
         _IsFadingIn = false;
         _ValueToSetAlpha = 1;
     }
@@ -67,6 +68,13 @@ public class MinigameEnablerScript : MonoBehaviour
             newColor = child.color;
             newColor.a = alpha;
             child.color = newColor;
+        }
+        TMP_Text[] textChildren = GetComponentsInChildren<TMP_Text>();
+        foreach (TMP_Text text in textChildren)
+        {
+            newColor = text.color;
+            newColor.a = alpha;
+            text.color = newColor;
         }
     }
 }

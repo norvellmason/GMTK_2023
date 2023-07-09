@@ -28,6 +28,8 @@ public class PowerLevelScript : MonoBehaviour
             _PowerToAdd -= powerToAddThisFrame;
             PowerLevel += powerToAddThisFrame;
 
+            PowerLevel = Mathf.Min(PowerLevel, 17.5f);
+
             float newXPos = _BarStartingPos.x + (_BarSpriteRenderer.bounds.size.x * 0.5f);
             _BarTransform.position = new Vector2(newXPos, _BarStartingPos.y);
             _BarTransform.localScale = new Vector2(PowerLevel, _BarTransform.localScale.y);

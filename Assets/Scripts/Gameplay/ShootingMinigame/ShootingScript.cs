@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class ShootingScript : MonoBehaviour
 {
-    public GameObject TargetPrefab;
+    public GameObject TargetPrefab1;
+    public GameObject TargetPrefab2;
     public Texture2D CursorTexture;
     private bool _Initialized = false;
+    private bool _HardMode = false;
     private List<TargetData> _Targets = new List<TargetData>();
     private MinigameEnablerScript _EnablerScript;
     public GameObject CrossbowObject;
@@ -35,7 +37,7 @@ public class ShootingScript : MonoBehaviour
     {
         if (!_Initialized && _EnablerScript.MinigameEnabled)
         {
-            Cursor.SetCursor(CursorTexture, Vector2.zero, CursorMode.ForceSoftware);
+            Cursor.SetCursor(CursorTexture, new Vector2(64, 64), CursorMode.ForceSoftware);
             _Initialized = true;
         }
 
@@ -64,6 +66,9 @@ public class ShootingScript : MonoBehaviour
             if (_Timer <= 0)
             {
                 _EnablerScript.DisableMinigame();
+                _HardMode = true;
+                _Initialized = false;
+                _Timer = 10;
             }
         }
         else
@@ -76,21 +81,31 @@ public class ShootingScript : MonoBehaviour
     {
         bool moveRight = Random.Range(0, 2) == 0;
         Vector2 position;
+        float flipModifier = 1;
         if (moveRight)
         {
-            List<Vector2> leftPositions = new List<Vector2> { new Vector2(-11, 1), new Vector2(-11, 3) };
+            List<Vector2> leftPositions = new List<Vector2> { new Vector2(-11, 0.9f), new Vector2(-11, -1) };
             position = leftPositions[Random.Range(0, 2)];
+            flipModifier = -1;
         }
         else
         {
-            List<Vector2> rightPositions = new List<Vector2> { new Vector2(11, 1), new Vector2(11, 3) };
+            List<Vector2> rightPositions = new List<Vector2> { new Vector2(11, 0.9f), new Vector2(11, -1) };
             position = rightPositions[Random.Range(0, 2)];
+            flipModifier = 1;
         }
 
-        GameObject newTarget = Instantiate(TargetPrefab, new Vector3(position.x, position.y), Quaternion.identity, gameObject.transform);
+        GameObject prefabToUse = Random.Range(0, 2) == 0 ? TargetPrefab1 : TargetPrefab2;
+
+        GameObject newTarget = Instantiate(prefabToUse, new Vector3(position.x, position.y, -1), Quaternion.identity, gameObject.transform);
+        newTarget.transform.localScale = new Vector3(newTarget.transform.localScale.x * flipModifier, newTarget.transform.localScale.y, newTarget.transform.localScale.z);
         TargetScript newTargetScript = newTarget.GetComponent<TargetScript>();
         newTargetScript.MoveRight = moveRight;
         newTargetScript.MoveSpeed = 4 + Random.Range(0f, 4f);
+        if (_HardMode)
+        {
+            newTargetScript.MoveSpeed = 8 + Random.Range(0f, 6f);
+        }
         TargetData newTargetData = new TargetData();
         newTargetData.GameObject = newTarget;
         newTargetData.Script = newTargetScript;
