@@ -23,6 +23,18 @@ public class MinigameController : MonoBehaviour
     private Transform _GoblinoTransform;
     private Vector3 _GoblinoDestination = new Vector3(2, 8, -5);
 
+    public GameObject _HeroPrefab1;
+    private Transform _HeroTransform1;
+    private Vector3 _HeroDestination1 = new Vector3(14, 0, -5);
+
+    public GameObject _HeroPrefab2;
+    private Transform _HeroTransform2;
+    private Vector3 _HeroDestination2 = new Vector3(-14, 0, -5);
+
+    public GameObject _HeroPrefab3;
+    private Transform _HeroTransform3;
+    private Vector3 _HeroDestination3 = new Vector3(14, 0, -5);
+
 
     private class MinigameData
     {
@@ -45,6 +57,9 @@ public class MinigameController : MonoBehaviour
         _CoachTransform = Instantiate(_CoachPrefab, new Vector3(-14f, 5, -5), Quaternion.identity).transform;
         _GoblinaTransform = Instantiate(_GoblinaPrefab, new Vector3(-11f, -5, -5), Quaternion.identity).transform;
         _GoblinoTransform = Instantiate(_GoblinoPrefab, new Vector3(-3f, -8, -5), Quaternion.identity).transform;
+        _HeroTransform1 = Instantiate(_HeroPrefab1, new Vector3(-14f, 0, -5), Quaternion.identity).transform;
+        _HeroTransform2 = Instantiate(_HeroPrefab2, new Vector3(14f, 0, -5), Quaternion.identity).transform;
+        _HeroTransform3 = Instantiate(_HeroPrefab3, new Vector3(-14f, 0, -5), Quaternion.identity).transform;
 
         _Minigames.Add(new MinigameData(transform.GetChild(1).gameObject, ReportSuccess));
         _Minigames.Add(new MinigameData(transform.GetChild(2).gameObject, ReportSuccess));

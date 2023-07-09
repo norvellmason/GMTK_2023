@@ -1126,7 +1126,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 474680351}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.09, y: -0.31, z: 0}
+  m_LocalPosition: {x: 4.09, y: -0.31, z: -1}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2105,6 +2105,9 @@ MonoBehaviour:
   _CoachPrefab: {fileID: 5098289302061332314, guid: 976bee1af88b00c4a9cdda19f0a93390, type: 3}
   _GoblinaPrefab: {fileID: 1102689017026673279, guid: 13af4cca7abbca34b8c94254b75419f7, type: 3}
   _GoblinoPrefab: {fileID: 5096217049482045096, guid: 0b6469b9ca7f3774398374c5e2484f6e, type: 3}
+  _HeroPrefab1: {fileID: 435107525869608861, guid: 094661e5d2e5ebc44be5219b28b345da, type: 3}
+  _HeroPrefab2: {fileID: 5539439723702721935, guid: b5809f3464ed09247943c8185648e1e2, type: 3}
+  _HeroPrefab3: {fileID: 9152182570738270679, guid: f88bcee819dfeb0499e039d1bff48b08, type: 3}
 --- !u!1 &1104822957
 GameObject:
   m_ObjectHideFlags: 0
@@ -3819,7 +3822,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1582589240}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.16, y: -0.46, z: 0}
+  m_LocalPosition: {x: 2.16, y: -0.46, z: 5}
   m_LocalScale: {x: 0.5408592, y: 0.5408592, z: 0.5408592}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3988,7 +3991,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1606734336}
   m_LocalRotation: {x: -0, y: -0, z: 0.032864768, w: 0.99945986}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
