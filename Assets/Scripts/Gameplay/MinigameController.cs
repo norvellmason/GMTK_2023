@@ -82,17 +82,28 @@ public class MinigameController : MonoBehaviour
     {
         if (_MinigameIndex > 1)
         {
-            MoveCoach();
+            MoveHero1();
         }
        
         if (_MinigameIndex > 2)
         {
             MoveGoblina();
         }
-        
+
         if (_MinigameIndex > 3)
         {
+            MoveHero2();
+        }
+
+        if (_MinigameIndex > 4)
+        {
             MoveGoblino();
+            MoveCoach();
+        }
+
+        if (_MinigameIndex > 5)
+        {
+            MoveHero3();
         }
 
         if (_MinigameIndex < _Minigames.Count && _Minigames[_MinigameIndex].Enabler.IsFadingOut)
@@ -145,6 +156,36 @@ public class MinigameController : MonoBehaviour
         {
             directionToMove.Normalize();
             _GoblinaTransform.position += directionToMove * Time.deltaTime * 3;
+        }
+    }
+
+    private void MoveHero1()
+    {
+        Vector3 directionToMove = _HeroDestination1 - _HeroTransform1.position;
+        if (directionToMove != Vector3.zero)
+        {
+            directionToMove.Normalize();
+            _HeroTransform1.position += directionToMove * Time.deltaTime * 3;
+        }
+    }
+
+    private void MoveHero2()
+    {
+        Vector3 directionToMove = _HeroDestination2 - _HeroTransform2.position;
+        if (directionToMove != Vector3.zero)
+        {
+            directionToMove.Normalize();
+            _HeroTransform2.position += directionToMove * Time.deltaTime * 3;
+        }
+    }
+
+    private void MoveHero3()
+    {
+        Vector3 directionToMove = _HeroDestination3 - _HeroTransform3.position;
+        if (directionToMove != Vector3.zero)
+        {
+            directionToMove.Normalize();
+            _HeroTransform3.position += directionToMove * Time.deltaTime * 3;
         }
     }
 
