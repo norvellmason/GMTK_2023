@@ -13,7 +13,7 @@ public class WritingScript : MonoBehaviour
     private TMP_Text _GrayText;
     private TMP_Text _BlackText;
     private string _TextToType =
-        "Dear Diary.Today a puny human attacked\n" +
+        "Dear Diary. Today a puny human attacked\n" +
         "my home.This guy has a bad case of main\n" +
         "character syndrome. Seriously. He's been\n" +
         "killing all my friends and family without\n" +
