@@ -73,7 +73,7 @@ public class MinigameController : MonoBehaviour
 
         _Minigames.First().Enabler.EnableMinigame();
 
-        //_Minigames[5].Enabler.EnableMinigame();
+        //_Minigames[2].Enabler.EnableMinigame();
         //_MinigameIndex = 5;
     }
 

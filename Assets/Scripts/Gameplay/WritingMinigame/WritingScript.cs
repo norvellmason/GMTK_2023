@@ -58,9 +58,11 @@ public class WritingScript : MonoBehaviour
                 {
                     foreach (char c in Input.inputString)
                     {
-                        if (c == nextChar)
+                        char loweredNext = Char.ToLower(nextChar);
+                        char loweredTyped = Char.ToLower(c);
+                        if (loweredTyped == loweredNext)
                         {
-                            _BlackText.text += c;
+                            _BlackText.text += nextChar;
                             _CurrentCharIndex++;
                             _ScoreScript.IncreaseScore(0.05f);
                         }
